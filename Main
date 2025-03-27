@@ -1,0 +1,346 @@
+import time
+
+import os
+
+import random
+
+import sys
+
+loop = 1
+
+# ANSI escape codes for colors
+
+RED = "\033[91m"
+
+GREEN = "\033[92m"
+
+YELLOW = "\033[93m"
+
+BLUE = "\033[94m"
+
+MAGENTA = "\033[95m"
+
+CYAN = "\033[96m"
+
+WHITE = "\033[97m"
+
+RESET = "\033[0m"
+
+line = 1
+
+#Ring Colors
+
+red = 1
+
+green = 2
+
+yellow = 3
+
+blue =  4
+
+white = 5
+
+class wait:
+
+ random_number = random.randint(1, 5)  # Random wait time generator
+
+ def wait_time(random_number): # Function to wait for a random amount of time
+
+   time.sleep(random_number) # Random wait time
+
+   #wait.wait_time(wait.random_number) 
+
+def clear_screen(): # Function to clear the screen
+   
+  os.system('cls') # Clear the screen
+
+ #clear_screen() 
+
+color_to_number = { # Dictionary to convert color to number
+
+    "red": 1,
+
+    "green": 2,
+
+    "yellow": 3,
+
+    "blue": 4,
+
+    "white": 5,
+
+}
+
+class boxColor: # Class to create colored boxes
+
+  def red(text):
+
+    return RED + text + RESET
+
+  def green(text):
+
+    return GREEN + text + RESET
+
+  def yellow(text):
+
+    return YELLOW + text + RESET
+
+  def blue(text):
+
+    return BLUE + text + RESET
+
+  def white(text):
+
+    return WHITE + text + RESET
+  
+  def line(text):
+
+    return WHITE + text + RESET
+
+  def print_red_box():
+   
+   sys.stdout.write("\033[F")  # Move cursor up one line
+
+   print(f"""{RED}
+    ---------------------
+    ┇                   ┇
+    ---------------------{RESET}""")
+
+  def print_green_box():
+   
+   sys.stdout.write("\033[F")  # Move cursor up one line
+   
+   print(f"""{GREEN}    
+     -------------------
+     ┇                 ┇
+     -------------------{RESET}""")
+   
+  def print_yellow_box():
+   
+   sys.stdout.write("\033[F")  # Move cursor up one line
+   
+   print(f"""{YELLOW}    
+      -----------------
+      ┇               ┇
+      -----------------{RESET} """)
+
+  def print_blue_box():
+   
+   sys.stdout.write("\033[F")  # Move cursor up one line
+   
+   print(f"""{BLUE}    
+       ---------------
+       ┇             ┇
+       ---------------{RESET}""")
+
+  def print_white_box():  
+   
+   sys.stdout.write("\033[F")  # Move cursor up one line
+   
+   print(f"""{WHITE}    
+        -------------
+        ┇           ┇
+        -------------{RESET} """)
+   
+  def print_line():
+     
+    sys.stdout.write("\033[F")  # Move cursor up one line
+   
+    print(f"""{WHITE}    
+              ┇           
+              ┇ {RESET} """)
+   
+
+stack = []  # Stack 
+
+stack.append(red)
+
+stack.append(green)
+
+stack.append(yellow)
+
+stack.append(blue)
+
+stack.append(white)
+
+def print_The_Stack(): # Function to print the stack
+
+    for i in range(line):
+       
+       boxColor.print_line()
+    
+    for i in reversed(stack): # Loop through the stack
+  
+        if i == 5:
+
+            boxColor.print_white_box()
+
+            time.sleep(.5)
+
+
+        if i == 4:
+
+            boxColor.print_blue_box()
+
+            time.sleep(.5)
+
+        if i == 3:
+
+            boxColor.print_yellow_box()
+
+            time.sleep(.5)
+    
+        if i == 2:
+            
+            boxColor.print_green_box()
+            
+            time.sleep(.5)
+
+        if i == 1:  
+                
+            boxColor.print_red_box()
+
+            time.sleep(.5)
+
+        if i == 6:  
+                
+            boxColor.print_line()
+
+            time.sleep(.5)
+    
+    print(f"""{WHITE}-----------------------------{RESET}""")
+
+
+
+print(f"""{BLUE}
+        
+      Welcome to The Virtual Kids Toy
+
+
+      {RESET}""")
+
+wait.wait_time(wait.random_number) 
+
+print("""
+      
+      Its time to stack!
+
+      """)
+
+wait.wait_time(wait.random_number) 
+
+clear_screen() 
+
+print_The_Stack() # Print the stack
+
+while loop  < 2:
+
+    print("""
+      
+          Whould you like to remove(r), add(a) or remove all(rm) the rings. if you would like to exit press (q)
+
+          """)
+
+    Userchoice = input()
+
+    if Userchoice == "r":
+
+        print("""
+        
+        Which color ring would you like to remove?
+
+        """)
+
+        removecolor = input()
+
+        box_number = color_to_number.get(removecolor)
+
+        if box_number is None:
+
+            print(f"{RED}Invalid color! Please enter a valid color (red, green, yellow, blue, white).{RESET}")
+
+            time.sleep(1)
+
+            continue
+
+   
+        if box_number != stack[-1]:
+
+            print(f"{RED}Error: You can only remove the top ring!{RESET}")
+
+            time.sleep(1)
+
+            continue
+
+        if box_number not in stack:  # Check if the box is in the stack
+
+            print(f"{RED}Error: The {removecolor} ring is not in the stack!{RESET}")
+
+            time.sleep(1)
+
+            continue
+
+        stack.pop()
+
+        line += 1
+
+        clear_screen()
+
+        print_The_Stack()  # Print the updated stack
+        
+    if Userchoice == "a":
+
+        print("""
+        
+        Wich color ring would you like to add?
+
+        """)
+
+        addcolor = input()
+
+        box_number = color_to_number.get(addcolor)
+
+        if box_number is None:
+
+            print(f"{RED}Invalid color! Please enter a valid color (red, green, yellow, blue, white).{RESET}")
+
+            time.sleep(1)
+
+            continue
+
+        if box_number in stack:  # Check if the box is already in use
+
+            print(f"{RED}Error: The {addcolor} ring is already in use!{RESET}")
+
+            time.sleep(1)
+
+            continue
+
+        stack.append(box_number)
+
+        line -= 1
+
+        clear_screen()
+
+        print_The_Stack()  # Print the updated stack
+
+    if Userchoice == "rm":
+       
+        stack.clear()
+
+        line = 5
+
+        time.sleep(1)
+
+        clear_screen()
+
+        print_The_Stack()  # Print the updated stack
+    
+    if Userchoice == "q":
+
+        clear_screen()
+
+        time.sleep(1)
+       
+        print(f"{GREEN}Thanks for playing!{RESET}")
+
+        break
