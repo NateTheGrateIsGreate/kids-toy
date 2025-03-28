@@ -254,6 +254,14 @@ while loop  < 2:
 
         box_number = color_to_number.get(removecolor)
 
+        if not stack:
+           
+            print(f"{RED}Error: There are no rings to remove!{RESET}")
+
+            time.sleep(1)
+
+            continue
+
         if box_number is None:
 
             print(f"{RED}Invalid color! Please enter a valid color (red, green, yellow, blue, white).{RESET}")
