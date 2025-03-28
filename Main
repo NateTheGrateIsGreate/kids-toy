@@ -246,7 +246,7 @@ while loop  < 2:
 
         print("""
         
-        Which color ring would you like to remove?
+        Which color ring would you like to remove? (red, green, yellow, blue, white)
 
         """)
 
@@ -299,7 +299,7 @@ while loop  < 2:
 
         print("""
         
-        Wich color ring would you like to add?
+        Wich color ring would you like to add? (red, green, yellow, blue, white)
 
         """)
 
